@@ -16,7 +16,7 @@ public class CreateCustomerCommand implements Controller {
         final String budget = enterBudget();
         final String city = enterCity();
 //        final String companyId = enterCompanyId();
-        new CustomerServiceImpl().createNewCustomer(name,city, Long.valueOf(budget));
+        new CustomerServiceImpl().createNewCustomer(name, city, Long.valueOf(budget));
         System.out.println(" ✅ You created \uD83D\uDC49 " + "new Customer" + "\n");
     }
 
@@ -40,7 +40,7 @@ public class CreateCustomerCommand implements Controller {
         return budget;
     }
 
-//    private String enterCompanyId() {
+    //    private String enterCompanyId() {
 //        System.out.print(" ENTER COMPANY-ID \n\uD83D\uDC49 ");
 //        String companyId = scanner.next();
 //        try {
@@ -54,15 +54,15 @@ public class CreateCustomerCommand implements Controller {
 //        }
 //        return companyId;
 //    }
-private String enterCity() {
-    System.out.print(" ENTER CITY \n\uD83D\uDC49 ");
-    String city = scanner.next();
-        if (!Validator.validString(city) & city.length()>15) {
+    private String enterCity() {
+        System.out.print(" ENTER CITY \n\uD83D\uDC49 ");
+        String city = scanner.next();
+        if (!Validator.validString(city) & city.length() > 15) {
             System.out.println("Try again");
             return enterCity();
         }
-    return city;
-}
+        return city;
+    }
 
     @Override
     public void start() {

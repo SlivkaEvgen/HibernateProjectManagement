@@ -36,6 +36,7 @@ public class CrudRepositoryHibernateImpl<T extends BaseModel<ID>, ID> implements
         ID id = t.getId() == null ? save(t, session) : update(t);
         Optional<T> result = getById(id, session);
         sessionsOpenClose.closeSession(session);
+        System.out.println(result.get());
         return result.get();
     }
 

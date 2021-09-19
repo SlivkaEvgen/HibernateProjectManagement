@@ -1,8 +1,8 @@
 package org.homework.hibernate.controller.hw4.customer;
 
 import org.homework.hibernate.config.ScannerConsole;
-import org.homework.hibernate.service.hw4.CustomerServiceImpl;
 import org.homework.hibernate.model.Customer;
+import org.homework.hibernate.service.hw4.CustomerServiceImpl;
 import org.homework.hibernate.utils.Validator;
 
 import java.util.Optional;

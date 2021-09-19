@@ -18,7 +18,7 @@ public class UpdateCustomerCommand implements Controller {
         final String budget = enterBudget();
         final String city = enterCity();
 //        final String companyId = enterCompanyId();
-        CUSTOMER_SERVICE.update(Long.valueOf(id), name,city, Long.valueOf(budget));
+        CUSTOMER_SERVICE.update(Long.valueOf(id), name, city, Long.valueOf(budget));
         System.out.println(" ✅ You updated \uD83D\uDC49 " + CUSTOMER_SERVICE.getById(Long.valueOf(id)).get() + "\n");
     }
 
@@ -52,7 +52,7 @@ public class UpdateCustomerCommand implements Controller {
         return budget;
     }
 
-//    private String enterCompanyId() {
+    //    private String enterCompanyId() {
 //        System.out.print(" ENTER COMPANY-ID \n\uD83D\uDC49 ");
 //        String companyId = scanner.next();
 //        try {
@@ -66,15 +66,16 @@ public class UpdateCustomerCommand implements Controller {
 //        }
 //        return companyId;
 //    }
-private String enterCity() {
-    System.out.print(" ENTER CITY \n\uD83D\uDC49 ");
-    String city = scanner.next();
-        if (!Validator.validString(city)&city.length()>15) {
+    private String enterCity() {
+        System.out.print(" ENTER CITY \n\uD83D\uDC49 ");
+        String city = scanner.next();
+        if (!Validator.validString(city) & city.length() > 15) {
             System.out.println("Try again");
             return enterCity();
         }
-    return city;
-}
+        return city;
+    }
+
     @Override
     public void start() {
         update();

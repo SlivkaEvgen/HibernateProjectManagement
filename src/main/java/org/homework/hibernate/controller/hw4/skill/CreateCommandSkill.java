@@ -13,7 +13,6 @@ public class CreateCommandSkill implements Controller {
     private static CreateCommandSkill createCommandSkill;
 
     private CreateCommandSkill(){
-
     }
     public static CreateCommandSkill getInstance(){
         if(createCommandSkill == null){
