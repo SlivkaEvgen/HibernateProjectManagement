@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS customers
     id     INT PRIMARY KEY AUTO_INCREMENT,
     name   VARCHAR(40) NOT NULL,
     city   VARCHAR(40) NOT NULL,
-    budget DECIMAL     NOT NULL
+    budget DECIMAL   NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS developers
