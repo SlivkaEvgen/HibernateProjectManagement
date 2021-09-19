@@ -24,8 +24,6 @@ CREATE TABLE IF NOT EXISTS developers
     gender       ENUM ('Male','Female') NOT NULL,
     email        VARCHAR(30)            NOT NULL,
     salary       BIGINT(10)             NOT NULL
-#     company_id  INT NOT NULL,
-#     FOREIGN KEY (company_id) REFERENCES companies (id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS skills
@@ -41,10 +39,6 @@ CREATE TABLE IF NOT EXISTS projects
     name        VARCHAR(40) NOT NULL,
     cost        DECIMAL,
     first_date  datetime default CURRENT_TIMESTAMP
-#     company_id  INT         NOT NULL,
-#     customer_id INT         NOT NULL,
-#     FOREIGN KEY (company_id) REFERENCES companies (id) ON DELETE CASCADE,
-#     FOREIGN KEY (customer_id) REFERENCES customers (id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS developers_projects
