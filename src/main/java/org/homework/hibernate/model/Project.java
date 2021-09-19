@@ -43,10 +43,4 @@ public class Project implements BaseModel<Long> {
 
     @ManyToMany(mappedBy = "projects",cascade = CascadeType.REFRESH,fetch = FetchType.LAZY)
     private Set<Developer> developers;
-
-    //    @Column(name = "company_id", length = 10,insertable = false,updatable = false)
-//    private Long companyId;
-//
-//    @Column(name = "customer_id", length = 10,insertable = false,updatable = false)
-//    private Long customerId;
 }
