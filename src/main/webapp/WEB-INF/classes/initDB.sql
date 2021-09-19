@@ -1,4 +1,4 @@
-﻿USE MySqlGoItHomeWork;
+﻿USE homework;
 
 CREATE TABLE IF NOT EXISTS companies
 (
@@ -12,8 +12,6 @@ CREATE TABLE IF NOT EXISTS customers
     id         INT PRIMARY KEY AUTO_INCREMENT,
     name       VARCHAR(40) NOT NULL,
     budget     DECIMAL NOT NULL,
-    company_id INT NOT NULL,
-    FOREIGN KEY (company_id) REFERENCES companies (id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS developers
@@ -24,8 +22,6 @@ CREATE TABLE IF NOT EXISTS developers
     gender      ENUM ('Male','Female') NOT NULL,
     email       VARCHAR(30) NOT NULL,
     number_phone BIGINT NOT NULL,
-    company_id  INT NOT NULL,
-    FOREIGN KEY (company_id) REFERENCES companies (id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS skills
@@ -39,10 +35,6 @@ CREATE TABLE IF NOT EXISTS projects
 (
     id             INT PRIMARY KEY AUTO_INCREMENT,
     name           VARCHAR(40) NOT NULL,
-    company_id     INT NOT NULL,
-    customer_id    INT NOT NULL,
-    FOREIGN KEY (company_id) REFERENCES companies (id) ON DELETE CASCADE,
-    FOREIGN KEY (customer_id) REFERENCES customers (id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS developers_projects
