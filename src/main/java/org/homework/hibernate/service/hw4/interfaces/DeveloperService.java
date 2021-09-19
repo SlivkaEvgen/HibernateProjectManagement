@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface DeveloperService extends IService<Developer, Long> {
 
-    Developer createNewDeveloper(String name, Long age, String gender, String email, Long salary,Long companyId);
+    Developer createNewDeveloper(String name, Long age, String gender, String email, Long salary);
 
-    void update(Long id, String name, Long age, String gender, String email, Long salary,Long companyId);
+    void update(Long id, String name, Long age, String gender, String email, Long salary);
 
     Long getSumSalariesDevelopersOfOneProject(Long projectId);
 

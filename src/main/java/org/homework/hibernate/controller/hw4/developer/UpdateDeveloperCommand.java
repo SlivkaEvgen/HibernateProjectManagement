@@ -17,12 +17,12 @@ public class UpdateDeveloperCommand implements Controller {
         final String id = enterId();
         final String name = enterName();
         final String age = enterAge();
-        final String companyId = enterCompanyId();
+//        final String companyId = enterCompanyId();//Long.valueOf(companyId)
         final String gender = enterGender();
         final String email = enterEmail();
-        final String numberPhone = enterNumberPhone();
+//        final String numberPhone = enterNumberPhone();
         final String salary = enterSalary();
-        DEVELOPER_SERVICE.update(Long.valueOf(id), name, Long.valueOf(age), gender, email, Long.valueOf(salary),Long.valueOf(companyId));
+        DEVELOPER_SERVICE.update(Long.valueOf(id), name, Long.valueOf(age), gender, email, Long.valueOf(salary));
         System.out.println(" ✅ You updated \uD83D\uDC49 " + DEVELOPER_SERVICE.getById(Long.valueOf(id)).get() + "\n");
     }
 

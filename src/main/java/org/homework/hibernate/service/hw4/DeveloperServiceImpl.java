@@ -25,20 +25,20 @@ public class DeveloperServiceImpl implements DeveloperService {
     }
 
     @Override
-    public Developer createNewDeveloper(String name, Long age, String gender, String email, Long salary, Long companyId) {
+    public Developer createNewDeveloper(String name, Long age, String gender, String email, Long salary) {
         Developer developer = Developer.builder()
                 .name(name)
                 .age(age)
                 .gender(gender)
                 .email(email)
                 .salary(salary)
-                .company_id(companyId)
+//                .company_id(companyId)
                 .build();
         return CRUD_REPOSITORY.save(developer);
     }
 
     @Override
-    public void update(Long id, String name, Long age, String gender, String email, Long salary, Long companyId) {
+    public void update(Long id, String name, Long age, String gender, String email, Long salary) {
         Session session = sessionsOpenClose.createSession();
         session.getTransaction();
         Developer developer = session.get(Developer.class, id);
@@ -47,7 +47,7 @@ public class DeveloperServiceImpl implements DeveloperService {
         developer.setGender(gender);
         developer.setEmail(email);
         developer.setSalary(salary);
-        developer.setCompany_id(companyId);
+//        developer.setCompany_id(companyId);
         session.getTransaction().commit();
         session.close();
     }

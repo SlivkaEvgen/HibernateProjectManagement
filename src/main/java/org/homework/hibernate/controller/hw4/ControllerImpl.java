@@ -1,12 +1,12 @@
 package org.homework.hibernate.controller.hw4;
 
-import org.homework.hibernate.controller.hw4.company.CompanyCommandImpl;
-import org.homework.hibernate.controller.hw4.project.ProjectCommandImpl;
-import org.homework.hibernate.controller.hw4.skill.SkillCommandImpl;
 import org.homework.hibernate.config.ScannerConsole;
+import org.homework.hibernate.controller.hw4.company.CompanyCommandImpl;
 import org.homework.hibernate.controller.hw4.customer.CustomerCommandImpl;
 import org.homework.hibernate.controller.hw4.developer.DeveloperCommandImpl;
 import org.homework.hibernate.controller.hw4.interfaces.Controller;
+import org.homework.hibernate.controller.hw4.project.ProjectCommandImpl;
+import org.homework.hibernate.controller.hw4.skill.SkillCommandImpl;
 
 import java.util.Scanner;
 

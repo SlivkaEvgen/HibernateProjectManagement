@@ -31,6 +31,6 @@ public class Customer implements BaseModel<Long> {
     @Column(name = "budget", length = 10)
     private Long budget;
 
-    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<Project> projects;
 }

@@ -2,8 +2,8 @@ package org.homework.hibernate.service.hw4;
 
 import org.hibernate.Session;
 import org.homework.hibernate.model.Skill;
-import org.homework.hibernate.repository.CrudRepository;
 import org.homework.hibernate.repository.RepositoryFactory;
+import org.homework.hibernate.repository.interfaces.CrudRepository;
 import org.homework.hibernate.service.hw4.interfaces.SkillService;
 import org.homework.hibernate.utils.SessionsOpenClose;
 
@@ -13,7 +13,6 @@ import java.util.Optional;
 public class SkillServiceImpl implements SkillService {
 
     private final CrudRepository<Skill, Long> CRUD_REPOSITORY = RepositoryFactory.of(Skill.class);
-
     private final SessionsOpenClose sessionsOpenClose = SessionsOpenClose.getInstance();
 
     @Override

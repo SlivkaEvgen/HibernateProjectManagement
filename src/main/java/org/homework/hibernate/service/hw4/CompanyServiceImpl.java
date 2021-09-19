@@ -2,9 +2,8 @@ package org.homework.hibernate.service.hw4;
 
 import org.hibernate.Session;
 import org.homework.hibernate.model.Company;
-import org.homework.hibernate.model.Customer;
-import org.homework.hibernate.repository.CrudRepository;
 import org.homework.hibernate.repository.RepositoryFactory;
+import org.homework.hibernate.repository.interfaces.CrudRepository;
 import org.homework.hibernate.service.hw4.interfaces.CompanyService;
 import org.homework.hibernate.utils.SessionsOpenClose;
 
@@ -14,7 +13,8 @@ import java.util.Optional;
 public class CompanyServiceImpl implements CompanyService {
 
     private final CrudRepository<Company, Long> CRUD_REPOSITORY = RepositoryFactory.of(Company.class);
-private final SessionsOpenClose sessionsOpenClose = SessionsOpenClose.getInstance();
+    private final SessionsOpenClose sessionsOpenClose = SessionsOpenClose.getInstance();
+
     @Override
     public Optional<Company> getById(Long id) {
         return CRUD_REPOSITORY.findById(id);

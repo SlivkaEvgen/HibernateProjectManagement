@@ -37,11 +37,8 @@ public class Developer implements BaseModel<Long> {
     @Column(name = "salary", length = 10)
     private Long salary;
 
-    @Column(name = "company_id", length = 10,insertable = false,updatable = false)
-    private Long company_id;
-
     @ManyToOne
-    @JoinColumn(name = "company_id")
+    @JoinColumn(name = "company_id",insertable = false,updatable = false)
     private Company company;
 
     @ManyToMany(cascade = CascadeType.REFRESH)

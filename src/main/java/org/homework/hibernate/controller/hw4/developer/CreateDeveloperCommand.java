@@ -15,12 +15,12 @@ public class CreateDeveloperCommand implements Controller {
     public void create() {
         final String name = enterName();
         final String age = enterAge();
-        final String companyId = enterCompanyId();
+//        final String companyId = enterCompanyId();
         final String gender = enterGender();
         final String email = enterEmail();
 //        final String numberPhone = enterNumberPhone();
-        final String salary = enterSalary();
-        new DeveloperServiceImpl().createNewDeveloper(name, Long.valueOf(age), gender, email, Long.valueOf(salary),Long.valueOf(companyId));
+        final String salary = enterSalary();//Long.valueOf(companyId)
+        new DeveloperServiceImpl().createNewDeveloper(name, Long.valueOf(age), gender, email, Long.valueOf(salary));
         System.out.println(" ✅ You create \uD83D\uDC49   new Developer  \n");
     }
 
