@@ -1,8 +1,12 @@
 package org.homework.hibernate.service.hw4;
 
 import org.hibernate.Session;
+import org.homework.hibernate.model.Company;
 import org.homework.hibernate.model.Developer;
+import org.homework.hibernate.model.Project;
+import org.homework.hibernate.model.Skill;
 import org.homework.hibernate.repository.DeveloperCrudRepositoryImpl;
+import org.homework.hibernate.service.hw4.interfaces.CompanyService;
 import org.homework.hibernate.service.hw4.interfaces.DeveloperService;
 import org.homework.hibernate.utils.SessionsOpenClose;
 
@@ -13,6 +17,9 @@ public class DeveloperServiceImpl implements DeveloperService {
 
     private final DeveloperCrudRepositoryImpl CRUD_REPOSITORY = new DeveloperCrudRepositoryImpl(Developer.class);
     private final SessionsOpenClose sessionsOpenClose = SessionsOpenClose.getInstance();
+SkillServiceImpl skillService = new SkillServiceImpl();
+CompanyServiceImpl companyService = new CompanyServiceImpl();
+ProjectServiceImpl projectService = new ProjectServiceImpl();
 
     @Override
     public Optional<Developer> getById(Long id) {
@@ -25,14 +32,19 @@ public class DeveloperServiceImpl implements DeveloperService {
     }
 
     @Override
-    public Developer createNewDeveloper(String name, Long age, String gender, String email, Long salary) {
+    public Developer createNewDeveloper(String name, Long age, String gender, String email, Long salary,Long companyId,Long projectId,Long skillId) {
+        Company company = companyService.getById(companyId).get();
+        Project project = projectService.getById(projectId).get();
+        Skill skill = skillService.getById(skillId).get();
         Developer developer = Developer.builder()
                 .name(name)
                 .age(age)
                 .gender(gender)
                 .email(email)
                 .salary(salary)
-//                .company_id(companyId)
+//                .skill(skill)
+                .company(company)
+//                .project(project)
                 .build();
         return CRUD_REPOSITORY.save(developer);
     }

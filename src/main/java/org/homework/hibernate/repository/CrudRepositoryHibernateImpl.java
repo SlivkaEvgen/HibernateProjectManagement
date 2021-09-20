@@ -40,10 +40,6 @@ public class CrudRepositoryHibernateImpl<T extends BaseModel<ID>, ID> implements
         return result.get();
     }
 
-    public ID save(T t, Session session) {
-        return (ID) session.save(t);
-    }
-
     @Override
     public ID update(T t) {
         Session session = sessionsOpenClose.createSession();
@@ -51,10 +47,6 @@ public class CrudRepositoryHibernateImpl<T extends BaseModel<ID>, ID> implements
         ID id = update(t, session);
         session.close();
         return id;
-    }
-
-    private ID update(T t, Session session) {
-        return t.getId();
     }
 
     @Override
@@ -84,6 +76,14 @@ public class CrudRepositoryHibernateImpl<T extends BaseModel<ID>, ID> implements
 
     private Optional<T> getById(ID id, Session session) {
         return Optional.ofNullable(session.get(modelClass, id));
+    }
+
+    private ID update(T t, Session session) {
+        return t.getId();
+    }
+
+    private ID save(T t, Session session) {
+        return (ID) session.save(t);
     }
 
     @Override

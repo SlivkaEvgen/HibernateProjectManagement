@@ -27,9 +27,9 @@ public class Company implements BaseModel<Long> {
     @Column(name = "city", length = 40)
     private String city;
 
-    @OneToMany(mappedBy = "company",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "company",cascade = CascadeType.REFRESH,fetch = FetchType.EAGER)
     private Set<Project> projects;
 
-    @OneToMany(mappedBy = "company",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "company",cascade = CascadeType.REFRESH,fetch = FetchType.LAZY)
     private Set<Developer> developers;
 }

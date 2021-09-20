@@ -28,6 +28,6 @@ public class Skill implements BaseModel<Long> {
     @Column(name = "level", length = 30)
     private String level;
 
-    @ManyToMany(mappedBy = "skills",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "skills",cascade = CascadeType.REFRESH,fetch = FetchType.LAZY)
     private Set<Developer> developers;
 }

@@ -41,6 +41,6 @@ public class Project implements BaseModel<Long> {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @ManyToMany(mappedBy = "projects",cascade = CascadeType.REFRESH,fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "projects",cascade = CascadeType.REFRESH,fetch = FetchType.EAGER)
     private Set<Developer> developers;
 }

@@ -4,6 +4,8 @@ import org.homework.hibernate.config.ScannerConsole;
 import org.homework.hibernate.controller.hw4.interfaces.Controller;
 import org.homework.hibernate.service.hw4.CompanyServiceImpl;
 import org.homework.hibernate.service.hw4.DeveloperServiceImpl;
+import org.homework.hibernate.service.hw4.ProjectServiceImpl;
+import org.homework.hibernate.service.hw4.SkillServiceImpl;
 import org.homework.hibernate.utils.Validator;
 
 import java.util.Scanner;
@@ -15,12 +17,14 @@ public class CreateDeveloperCommand implements Controller {
     public void create() {
         final String name = enterName();
         final String age = enterAge();
-//        final String companyId = enterCompanyId();
+        final String companyId = enterCompanyId();
+        final String projectId = enterProjectId();
+        final String skillId = enterSkillId();
         final String gender = enterGender();
         final String email = enterEmail();
 //        final String numberPhone = enterNumberPhone();
         final String salary = enterSalary();//Long.valueOf(companyId)
-        new DeveloperServiceImpl().createNewDeveloper(name, Long.valueOf(age), gender, email, Long.valueOf(salary));
+        new DeveloperServiceImpl().createNewDeveloper(name, Long.valueOf(age), gender, email, Long.valueOf(salary),Long.valueOf(companyId),Long.valueOf(projectId), Long.valueOf(skillId));
         System.out.println(" ✅ You create \uD83D\uDC49   new Developer  \n");
     }
 
@@ -57,6 +61,36 @@ public class CreateDeveloperCommand implements Controller {
             return enterCompanyId();
         }
         return companyId;
+    }
+
+    private String enterProjectId() {
+        System.out.print(" ENTER Project-ID \n\uD83D\uDC49 ");
+        String projectId = scanner.next();
+        try {
+            if (!Validator.validNumber(projectId) | new ProjectServiceImpl().getById(Long.valueOf(projectId)).get().getId() == null) {
+                System.out.println("Try again");
+                return enterProjectId();
+            }
+        } catch (NumberFormatException r) {
+            System.out.println("Try again");
+            return enterProjectId();
+        }
+        return projectId;
+    }
+
+    private String enterSkillId() {
+        System.out.print(" ENTER Skill-ID \n\uD83D\uDC49 ");
+        String skillId = scanner.next();
+        try {
+            if (!Validator.validNumber(skillId) | new SkillServiceImpl().getById(Long.valueOf(skillId)).get().getId() == null) {
+                System.out.println("Try again");
+                return enterSkillId();
+            }
+        } catch (NumberFormatException r) {
+            System.out.println("Try again");
+            return enterSkillId();
+        }
+        return skillId;
     }
 
     private String enterSalary() {

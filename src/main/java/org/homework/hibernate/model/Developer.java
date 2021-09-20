@@ -41,14 +41,22 @@ public class Developer implements BaseModel<Long> {
     @JoinColumn(name = "company_id",insertable = false,updatable = false)
     private Company company;
 
-    @ManyToMany(cascade = CascadeType.REFRESH)
+//    @ManyToOne
+//    @JoinColumn(name = "skill_id",insertable = false,updatable = false)
+//    private Skill skill;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "project_id",insertable = false,updatable = false)
+//    private Project project;
+
+    @ManyToMany(cascade = CascadeType.REFRESH,fetch = FetchType.LAZY)
     @JoinTable(
             name = "developers_skills",
             joinColumns = {@JoinColumn(name = "developer_id")},
             inverseJoinColumns = {@JoinColumn(name = "skill_id")})
     private Set<Skill> skills;
 
-    @ManyToMany(cascade = CascadeType.REFRESH)
+    @ManyToMany(cascade = CascadeType.REFRESH,fetch = FetchType.LAZY)
     @JoinTable(
             name = "developers_projects",
             joinColumns = {@JoinColumn(name = "developer_id")},

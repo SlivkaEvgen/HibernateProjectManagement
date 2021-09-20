@@ -4,3 +4,5 @@
 /.checkmate/
 src/main/resources/scripts/original/scripts2/
 src/main/resources/scripts/original/
+src/main/webapp/
+WEB-INF/

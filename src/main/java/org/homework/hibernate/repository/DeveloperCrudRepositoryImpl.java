@@ -12,8 +12,12 @@ import javax.persistence.criteria.CriteriaQuery;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 public class DeveloperCrudRepositoryImpl extends CrudRepositoryHibernateImpl<Developer, Long> implements DeveloperCrudRepository {
+
+    private final Session session = HibernateSessionFactory.getSessionFactory().openSession();
 
     public DeveloperCrudRepositoryImpl(Class<Developer> modelClass) {
         super(modelClass);
@@ -23,11 +27,7 @@ public class DeveloperCrudRepositoryImpl extends CrudRepositoryHibernateImpl<Dev
     public Long getSumSalariesDevelopersOfOneProject(Long projectId) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         session.beginTransaction();
-        Project project = session.get(Project.class, projectId);
-        Set<Developer> developers = project.getDevelopers();
-        System.out.println(project);
-        List<Developer> developerList = new ArrayList<>(developers);
-        System.out.println(developerList);
+        List<Developer> developerList = new ArrayList<>(session.get(Project.class, projectId).getDevelopers());
         long totalSalaries = 0L;
         for (Developer developer : developerList) {
             Long salary = developer.getSalary();
@@ -45,7 +45,6 @@ public class DeveloperCrudRepositoryImpl extends CrudRepositoryHibernateImpl<Dev
         Project project = session.get(Project.class, projectId);
         Set<Developer> developers = project.getDevelopers();
         List<Developer> developerList = new ArrayList<>(developers);
-//        List<Developer> developerList = developers.stream().collect(Collectors.toList());
         session.getTransaction().commit();
         session.close();
         return developerList;
@@ -55,9 +54,9 @@ public class DeveloperCrudRepositoryImpl extends CrudRepositoryHibernateImpl<Dev
     public List<Developer> getDevelopersByActivity(String nameActivity) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         session.beginTransaction();
-        List<Developer> developerList = loadAllData(Developer.class, session);
-        List<Developer> developers = new ArrayList<>();
-        for (Developer developer : developerList) {
+//        List<Developer> developerList = loadAllData(Developer.class, session);
+        List<Developer> developers = new ArrayList<>(loadAllData(Developer.class, session));
+        for (Developer developer : developers) {
             List<Skill> skillsList = new ArrayList<>(developer.getSkills());
             for (Skill skill : skillsList) {
                 String activities = skill.getActivities();
@@ -72,16 +71,15 @@ public class DeveloperCrudRepositoryImpl extends CrudRepositoryHibernateImpl<Dev
     }
 
     @Override
-    public List<Developer> getDevelopersByLevel(String nameLevel) {
+    public List<Developer> getDevelopersByLevel(String level) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         session.beginTransaction();
-        List<Developer> developerList = loadAllData(Developer.class, session);
-        List<Developer> developers = new ArrayList<>();
-        for (Developer developer : developerList) {
+        List<Developer> developers = new ArrayList<>(loadAllData(Developer.class, session));
+        for (Developer developer : developers) {
             List<Skill> skillsList = new ArrayList<>(developer.getSkills());
             for (Skill skill : skillsList) {
-                String level = skill.getLevel();
-                if (level.equalsIgnoreCase(nameLevel)) {
+               String level2 = skill.getLevel();
+                if (level2.equalsIgnoreCase(level)) {
                     developers.add(developer);
                 }
             }
